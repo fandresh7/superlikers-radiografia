@@ -6,7 +6,7 @@ import { dirname } from './constants.js'
 export const uploadFilesOnDiskStorage = () => {
   const diskStorage = multer.diskStorage({
     destination: (_req, _file, cb) => {
-      const filePath = path.resolve(dirname, '../public/inputs')
+      const filePath = path.resolve(dirname, '../public')
       cb(null, filePath)
     },
     filename: (_req, _file, cb) => {

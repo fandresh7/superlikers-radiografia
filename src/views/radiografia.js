@@ -49,7 +49,7 @@ const getBestItems = (ordenedData) => {
 }
 
 export const getRadiografia = (fileName) => {
-  const pathFile = path.resolve(dirname, `../public/inputs/${fileName}`)
+  const pathFile = path.resolve(dirname, `../public/${fileName}`)
 
   const workSheetsFromFile = xlsx.parse(pathFile)
   let fileData = workSheetsFromFile[0].data
@@ -68,7 +68,7 @@ export const getRadiografia = (fileName) => {
   
   let resultFile = json2xls(result)
   
-  fs.writeFileSync('public/outputs/result.xlsx', resultFile, 'binary')
+  fs.writeFileSync('public/result.xlsx', resultFile, 'binary')
 
-  return `/outputs/result.xlsx`
+  return `/result.xlsx`
 }
