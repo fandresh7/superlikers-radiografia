@@ -1,0 +1,35 @@
+.d-none {
+  display: none;
+}
+
+body {
+  background-color: #222;
+  color: #fff;
+  font-family: system-ui;
+}
+
+main {
+  max-width: 800px;
+  text-align: center;
+  margin: 0 auto;
+  padding: 2rem 1rem;
+}
+
+.title {
+  margin-bottom: 3rem;
+  background: #ccc;
+  background: linear-gradient(90deg, #93c5fd, #dbeafe);
+  font-size: 3rem;
+
+  -webkit-text-fill-color: transparent;
+  -webkit-background-clip: text;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  text-align: start;
+  width: 80%;
+  max-width: 380px;
+  margin: 0 auto;
+}

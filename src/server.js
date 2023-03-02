@@ -1,10 +1,9 @@
 import express from 'express'
 import cors from 'cors'
 
-import routes from './routes.js'
+import routes from './radiografia/routes/routes.js'
 
 export class Server {
-
   constructor () {
     this.app = express()
     this.port = process.env.PORT ?? '3000'
