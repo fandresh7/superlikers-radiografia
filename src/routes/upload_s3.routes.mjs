@@ -6,7 +6,7 @@ import { configureCors } from '../middlewares/cors.mjs'
 const router = Router()
 
 router.post('/', [
-  configureCors(['https://tu.superlikers.com']),
+  configureCors(['https://tu.superlikers.com', 'https://www.ppmuniversity-abinbev.com']),
   uploadFilesOnMemoryStorage().single('file'),
   validateFile
 ], uploadFile)
