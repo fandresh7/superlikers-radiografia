@@ -23,7 +23,7 @@ export const uploadFile = (req, res) => {
       if (err) {
         res.status(400).json({
           ok: false,
-          error: 'Ha ocurrido un error'
+          error: `Ha ocurrido un error - ${err.message}`
         })
       } else {
         res.status(200).json({
