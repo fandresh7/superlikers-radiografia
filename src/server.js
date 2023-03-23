@@ -5,6 +5,8 @@ import radiografiaRoutes from './routes/radiografia.routes.mjs'
 import uploadS3Routes from './routes/upload_s3.routes.mjs'
 
 export class Server {
+  allowedOrigins = ['https://tu.superlikers.com']
+
   constructor () {
     this.app = express()
     this.port = process.env.PORT ?? '3000'
@@ -14,7 +16,15 @@ export class Server {
   }
 
   middlewares () {
-    this.app.use(cors())
+    this.app.use(cors({
+      origin: function (origin, callback) {
+        if (!origin || this.allowedOrigins.indexOf(origin) !== -1) {
+          callback(null, true)
+        } else {
+          callback(new Error('Not allowed by CORS'))
+        }
+      }
+    }))
 
     this.app.use(express.static('public'))
 
