@@ -1,12 +1,12 @@
 import path from 'path'
 import multer from 'multer'
 
-import { dirname } from '../constants.js'
+import { dirname } from '../constants.mjs'
 
-export const uploadFilesOnDiskStorage = () => {
+export const uploadFilesOnDiskStorage = (relativePath) => {
   const diskStorage = multer.diskStorage({
     destination: (_req, _file, cb) => {
-      const filePath = path.resolve(dirname, '../../public/files/radiografia')
+      const filePath = path.resolve(dirname, relativePath)
       cb(null, filePath)
     },
     filename: (_req, _file, cb) => {

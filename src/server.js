@@ -1,7 +1,7 @@
 import express from 'express'
 import cors from 'cors'
 
-import routes from './radiografia/routes/routes.js'
+import radiografiaRoutes from './routes/radiografia.routes.mjs'
 
 export class Server {
   constructor () {
@@ -23,7 +23,7 @@ export class Server {
   }
 
   routes () {
-    this.app.use('/', routes)
+    this.app.use('/radiografia', radiografiaRoutes)
   }
 
   listen () {

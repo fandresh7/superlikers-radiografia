@@ -24,7 +24,7 @@ const sendForm = async (formData) => {
   buttonState(true)
 
   try {
-    const response = await fetch('/', {
+    const response = await fetch('/radiografia', {
       method: 'POST',
       body: formData
     })

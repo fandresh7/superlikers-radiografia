@@ -2,7 +2,7 @@ import fs from 'fs'
 import path from 'path'
 import json2xls from 'json2xls'
 import xlsx from 'node-xlsx'
-import { dirname } from '../constants.js'
+import { dirname } from '../constants.mjs'
 
 // Ordena la información del archivo en un objecto donde la key es el participante y el value es un objeto con la información de cada participante
 const orderData = (marcas, cupos, rows) => {
@@ -50,7 +50,7 @@ const getBestItems = (ordenedData) => {
 
 export const getRadiografia = (fileName) => {
   try {
-    const pathFile = path.resolve(dirname, `../../public/files/radiografia/${fileName}`)
+    const pathFile = path.resolve(dirname, `../public/files/radiografia/${fileName}`)
 
     const workSheetsFromFile = xlsx.parse(pathFile)
     const fileData = workSheetsFromFile[0].data
