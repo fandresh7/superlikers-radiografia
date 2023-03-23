@@ -1,4 +1,6 @@
 import { Router } from 'express'
+import { configureCors } from '../middlewares/cors.mjs'
+
 import { uploadFilesOnDiskStorage, validateFile } from '../middlewares/middlewares.mjs'
 import { createRadiografiaFile, getRadiografiaPage } from '../controllers/radiografia.controller.mjs'
 
