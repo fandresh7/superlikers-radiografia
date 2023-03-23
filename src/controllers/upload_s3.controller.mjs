@@ -11,9 +11,16 @@ export const uploadFile = (req, res) => {
 
     const s3 = new AWS.S3({ region: 'us-east-1' })
 
+    const originalName = req.file.originalname
+    const fileName = originalName.split('.')[0]
+    const fileType = originalName.split('.')[1]
+
+    const date = new Date().getTime()
+    const newFileName = `${fileName}-${date}.${fileType}`
+
     const params = {
       Bucket: config.S3_BUCKET,
-      Key: `photos_register/${req.file.originalname}`,
+      Key: `photos_register/${newFileName}`,
       Body: req.file.buffer,
       ContentType: req.file.mimetype,
       ACL: 'public-read'
@@ -28,7 +35,7 @@ export const uploadFile = (req, res) => {
       } else {
         res.status(200).json({
           ok: true,
-          url: `${config.S3_URL}/photos_register/${req.file.originalname}`
+          url: `${config.S3_URL}/photos_register/${newFileName}`
         })
       }
     })
