@@ -9,8 +9,8 @@ export const uploadFilesOnDiskStorage = (relativePath) => {
       const filePath = path.resolve(dirname, relativePath)
       cb(null, filePath)
     },
-    filename: (_req, _file, cb) => {
-      cb(null, 'basedata.xlsx')
+    filename: (_req, file, cb) => {
+      cb(null, file.originalname)
     }
   })
 

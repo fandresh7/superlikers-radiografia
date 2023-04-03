@@ -2,7 +2,6 @@ import { dirname } from '../constants.mjs'
 import { getRadiografia } from '../logic/radiografia.mjs'
 
 export const getRadiografiaPage = async (req, res) => {
-  console.log('here')
   res.sendFile(dirname + '/views/radiografia.html')
 }
 
