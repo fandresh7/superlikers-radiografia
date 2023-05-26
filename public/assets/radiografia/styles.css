@@ -33,3 +33,12 @@ form {
   max-width: 380px;
   margin: 0 auto;
 }
+
+.form-group {
+  display: flex;
+  gap: 1rem;
+}
+
+.form-group input {
+  width: auto;
+}

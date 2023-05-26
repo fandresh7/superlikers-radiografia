@@ -57,7 +57,7 @@ form.addEventListener('submit', event => {
   const fileInput = form.querySelector('input[type="file"]')
   const file = fileInput.files[0]
 
-  const formData = new FormData()
+  const formData = new FormData(event.target)
   formData.append('file', file)
 
   sendForm(formData)

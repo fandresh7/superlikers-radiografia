@@ -1,7 +1,8 @@
 import fs from 'fs'
 import path from 'path'
-import json2xls from 'json2xls'
 import xlsx from 'node-xlsx'
+import jsonexport from 'jsonexport'
+
 import { dirname } from '../constants.mjs'
 
 const getParticipantInfo = (titles, participantInfo) => {
@@ -16,8 +17,8 @@ const getParticipantInfo = (titles, participantInfo) => {
 
 const getRowData = (rowData) => {
   const data = {}
-  const keys = rowData.filter((item, index) => index % 2 === 0)
-  const values = rowData.filter((item, index) => index % 2 !== 0)
+  const keys = rowData.filter((_, index) => index % 2 === 0)
+  const values = rowData.filter((_, index) => index % 2 !== 0)
 
   keys.forEach((key, index) => {
     data[key] = values[index]
@@ -48,11 +49,14 @@ export const getEntriesFile = (fileName) => {
       data.push({ ...participant, ...ordenedRowData })
     })
 
-    const resultFile = json2xls(data)
-    fs.writeFileSync('public/files/entries/result.xlsx', resultFile, 'binary')
+    jsonexport(data, function (err, csv) {
+      if (err) return console.error(err)
+      fs.writeFileSync('public/files/entries/result.csv', csv, 'binary')
+    })
 
-    return 'files/entries/result.xlsx'
+    return 'files/entries/result.csv'
   } catch (err) {
+    console.log(err)
     throw new Error('El archivo no tiene la configuración correcta.')
   }
 }

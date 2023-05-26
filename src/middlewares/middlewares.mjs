@@ -15,7 +15,8 @@ export const uploadFilesOnDiskStorage = (relativePath) => {
   })
 
   return multer({
-    storage: diskStorage
+    storage: diskStorage,
+    limits: { fileSize: 80000000 }
   })
 }
 
