@@ -2,6 +2,7 @@ import fs from 'fs'
 import path from 'path'
 import xlsx from 'node-xlsx'
 import jsonexport from 'jsonexport'
+import fetch from 'node-fetch'
 
 import { dirname } from '../constants.mjs'
 
