@@ -42,3 +42,32 @@ form {
 .form-group input {
   width: auto;
 }
+
+button[type="submit"].disabled .send,
+button[type="submit"] .spinner,
+button[type="submit"] .loading {
+  display: none;
+}
+
+button[type="submit"] .send,
+button[type="submit"].disabled .spinner,
+button[type="submit"].disabled .loading {
+  display: inline-block;
+}
+
+.list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+}
+
+.list a {
+  color: white;
+  text-decoration: none;
+}
+
+.list li:hover a {
+  color: #93c5fd
+}

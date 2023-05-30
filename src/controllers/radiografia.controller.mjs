@@ -2,7 +2,7 @@ import { dirname } from '../constants.mjs'
 import { getRadiografia } from '../logic/radiografia.mjs'
 
 export const getRadiografiaPage = async (req, res) => {
-  res.sendFile(dirname + '/views/radiografia.html')
+  res.sendFile(dirname + '/views/radiografia/radiografia.html')
 }
 
 export const createRadiografiaFile = (req, res) => {

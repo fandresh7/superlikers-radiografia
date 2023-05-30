@@ -7,36 +7,34 @@
   <title>Superlikers MPG</title>
 
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-  <link rel="stylesheet" href="assets/radiografia/styles.css">
+  <link rel="stylesheet" href="assets/css/styles.css">
 
-  <script src="assets/entries/scripts.js" defer></script>
+  <script type="module" defer>
+    import { sendForm } from './assets/js/helpers.js'
+    
+    form.addEventListener('submit', async (event) => {
+      event.preventDefault()
+      const path = '/radiografia'
+
+      await sendForm(event, path)
+    })
+  </script>
 </head>
 <body>
   <main class="main">
-    <h1 class="title">Entries MPG</h1>
+    <h1 class="title">Radiografía MPG</h1>
 
     <form id="form">
-      <p class="text-center">Crear un archivo de Excel ordenando la información de las entries que se descargan desde el panel.</p>
-
       <!-- input type file -->
       <div class="mb-3">
-        <label for="formFile" class="form-label">Subir archivo:</label>
-        <input class="form-control" type="file" id="formFile">
-      </div>
-
-      <!-- input type radio -->
-      <div class="mb-3">
-        <label for="type" class="form-label">Tipo de respuesta:</label>
-        <div class="form-group">
-          <input type="radio" name="type" id="maintenance" value="maintenance">
-          <label for="maintenance">Maintenance</label>
-        </div>
+        <label for="formFile" class="form-label">Subir archivo</label>
+        <input class="form-control" type="file" id="formFile" name="file">
       </div>
 
       <!-- submit button -->
       <button class="btn btn-primary" type="submit">
-        <span class="d-none spinner spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
-        <span class="d-none loading">Loading...</span>
+        <span class="spinner spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+        <span class="loading">Loading...</span>
         <span class="send">Enviar</span>
       </button>
 

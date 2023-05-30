@@ -47,13 +47,21 @@ const getUniqueData = (data) => {
   const uniqueData = {}
 
   const excluded = ['julianclavijof@gmail.com', 'alejandro@superlikers.com']
+  const attemps = {}
 
   sortedData.forEach(item => {
     const { UID, Activity, State } = item
     const key = `${UID}-${Activity}`
 
+    if (!attemps[key]) attemps[key] = 0
+    attemps[key] += 1
+
     if (!uniqueData[key] && State !== 'undo' && !excluded.includes(UID)) {
-      uniqueData[key] = item
+      uniqueData[key] = { ...item }
+    }
+
+    if (uniqueData[key] !== undefined) {
+      uniqueData[key].attempts = attemps[key]
     }
   })
 

@@ -1,5 +1,6 @@
 import express from 'express'
 
+import indexRoutes from './routes/index.routes.mjs'
 import radiografiaRoutes from './routes/radiografia.routes.mjs'
 import uploadS3Routes from './routes/upload_s3.routes.mjs'
 import entriesRoutes from './routes/entries.routes.mjs'
@@ -22,6 +23,7 @@ export class Server {
   }
 
   routes () {
+    this.app.use('/', indexRoutes)
     this.app.use('/radiografia', radiografiaRoutes)
     this.app.use('/upload_s3', uploadS3Routes)
     this.app.use('/entries', entriesRoutes)

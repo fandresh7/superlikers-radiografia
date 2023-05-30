@@ -3,7 +3,7 @@ import { getEntriesFile } from '../logic/entries.mjs'
 import { getMaintenanceFile } from '../logic/maintenance.mjs'
 
 export const getEntriesPage = async (req, res) => {
-  res.sendFile(dirname + '/views/entries.html')
+  res.sendFile(dirname + '/views/entries/entries.html')
 }
 
 export const createEntriesFile = async (req, res) => {
@@ -15,22 +15,6 @@ export const createEntriesFile = async (req, res) => {
     } else {
       url = getEntriesFile(req.file.filename)
     }
-
-    res.status(200).json({
-      ok: true,
-      data: url
-    })
-  } catch (err) {
-    res.status(400).json({
-      ok: false,
-      error: err.message
-    })
-  }
-}
-
-export const getMaintenanceData = async (req, res) => {
-  try {
-    const url = await getMaintenanceFile(req.file.filename)
 
     res.status(200).json({
       ok: true,
