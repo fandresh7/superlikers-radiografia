@@ -16,7 +16,6 @@ const getTestsData = async () => {
   })
 
   const body = await response.json()
-
   return body
 }
 
@@ -36,7 +35,8 @@ const getRowData = (rowData) => {
   const values = rowData.filter((_, index) => index % 2 !== 0)
 
   keys.forEach((key, index) => {
-    data[key] = values[index]
+    const value = values[index]
+    data[key] = value
   })
 
   return data
@@ -70,14 +70,19 @@ const getUniqueData = (data) => {
 
 const getCorrectAnswers = (test, item) => {
   const step = test.steps.find(step => step.page === item.Activity)
-
   if (step === undefined) return [0, 0]
 
   const questions = test.questions.filter(question => question.step === step.step)
-  const correctAnswers = questions.filter(question => {
-    const collator = new Intl.Collator('es', { sensitivity: 'base' })
 
-    return collator.compare(item.data[question.name], question.value) === 0
+  const correctAnswers = questions.filter(question => {
+    const userResponse = item.data[question.name]
+
+    let correctAnswer = question.value
+    if (correctAnswer === 'VERDADERO') correctAnswer = true
+    if (correctAnswer === 'FALSO') correctAnswer = false
+
+    const collator = new Intl.Collator('es', { sensitivity: 'base' })
+    return collator.compare(userResponse, correctAnswer) === 0
   })
   return [questions.length, correctAnswers.length]
 }
