@@ -81,6 +81,7 @@ const getCorrectAnswers = (test, item) => {
     if (userResponse === true) userResponse = 'VERDADERO'
     if (userResponse === false) userResponse = 'FALSO'
     correctAnswer = correctAnswer.replace('ñ', 'n')
+    userResponse = userResponse.trim()
 
     return correctAnswer.localeCompare(userResponse, 'es', { sensitivity: 'base' }) === 0
   })
@@ -93,19 +94,14 @@ const getParticipantStepAdvance = async (data) => {
 
   uniqueData.forEach(item => {
     const activityType = item.Activity.split('_')[0]
-    if (activityType === 'pre') {
-      const pretest = testsData.pretests.find(pretest => pretest.category === item.Category)
-      const [totalQuestions, correctAnswers] = getCorrectAnswers(pretest, item)
-      item.totalQuestions = totalQuestions
-      item.correctAnswers = correctAnswers
-    }
 
-    if (activityType === 'pos') {
-      const test = testsData.tests.find(pretest => pretest.category === item.Category)
-      const [totalQuestions, correctAnswers] = getCorrectAnswers(test, item)
-      item.totalQuestions = totalQuestions
-      item.correctAnswers = correctAnswers
-    }
+    const data = activityType === 'pre'
+      ? testsData.pretests.find(pretest => pretest.category === item.Category)
+      : testsData.tests.find(test => test.category === item.Category)
+
+    const [totalQuestions, correctAnswers] = getCorrectAnswers(data, item)
+    item.totalQuestions = totalQuestions
+    item.correctAnswers = correctAnswers
   })
 
   return uniqueData
