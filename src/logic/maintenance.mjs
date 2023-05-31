@@ -75,14 +75,14 @@ const getCorrectAnswers = (test, item) => {
   const questions = test.questions.filter(question => question.step === step.step)
 
   const correctAnswers = questions.filter(question => {
-    const userResponse = item.data[question.name]
-
     let correctAnswer = question.value
-    if (correctAnswer === 'VERDADERO') correctAnswer = true
-    if (correctAnswer === 'FALSO') correctAnswer = false
 
-    const collator = new Intl.Collator('es', { sensitivity: 'base' })
-    return collator.compare(userResponse, correctAnswer) === 0
+    let userResponse = item.data[question.name]
+    if (userResponse === true) userResponse = 'VERDADERO'
+    if (userResponse === false) userResponse = 'FALSO'
+    correctAnswer = correctAnswer.replace('ñ', 'n')
+
+    return correctAnswer.localeCompare(userResponse, 'es', { sensitivity: 'base' }) === 0
   })
   return [questions.length, correctAnswers.length]
 }
