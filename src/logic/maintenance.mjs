@@ -81,7 +81,14 @@ const getCorrectAnswers = (test, item) => {
     if (userResponse === true) userResponse = 'VERDADERO'
     if (userResponse === false) userResponse = 'FALSO'
     correctAnswer = correctAnswer.replace('ñ', 'n')
-    userResponse = userResponse.trim()
+
+    console.log({
+      x: typeof userResponse === 'string',
+      y: typeof userResponse
+    })
+    if (typeof userResponse === 'string') {
+      userResponse = userResponse.trim()
+    }
 
     return correctAnswer.localeCompare(userResponse, 'es', { sensitivity: 'base' }) === 0
   })
